@@ -7,7 +7,7 @@
     <arg name="init_x"/>
     <arg name="init_y"/>
     <arg name="init_z"/>
-    <arg name="flight_type" default="2"/>
+    <arg name="flight_type" default="1"/>
     <arg name="point_num" default="1"/>
     <arg name="target0_x" default="0.0"/>
     <arg name="target0_y" default="0.0"/>
@@ -52,9 +52,9 @@
         <arg name="max_jer" value="20.0" />
         <!--always set to 1.5 times grater than sensing horizen-->
         <arg name="planning_horizon" value="7.5" />
-        <arg name="use_multitopology_trajs" value="false" />
+        <arg name="use_multitopology_trajs" value="true" />
         <!-- 1: use 2D Nav Goal to select goal  -->
-        <!-- 2: use global waypoints below  -->
+        <!-- 2: use global waypoints below  --> 
         <arg name="flight_type" value="$(arg flight_type)" />
         <!-- global waypoints -->
         <!-- It generates a piecewise min-snap traj passing all waypoints -->

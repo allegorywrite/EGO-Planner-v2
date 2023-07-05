@@ -65,6 +65,7 @@ namespace ego_planner
       return false;
     }
 
+    // 境界条件のみを元にした多項式軌道の生成
     Eigen::MatrixXd cstr_pts = initMJO.getInitConstraintPoints(ploy_traj_opt_->get_cps_num_prePiece_());
     vector<std::pair<int, int>> segments;
     if (ploy_traj_opt_->finelyCheckAndSetConstraintPoints(segments, initMJO, true) == PolyTrajOptimizer::CHK_RET::ERR)

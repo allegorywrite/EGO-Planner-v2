@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   message_generation
+  nav_msgs
 )
 
 find_package(Eigen3 REQUIRED)
@@ -23,12 +24,19 @@ add_message_files(
   PolyTraj.msg
   MINCOTraj.msg
   )
+
+add_service_files(
+  FILES
+  Trajectory.srv
+)
   
 # Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
   std_msgs
   geometry_msgs
+  quadrotor_msgs
+  nav_msgs
 )
 
 catkin_package(

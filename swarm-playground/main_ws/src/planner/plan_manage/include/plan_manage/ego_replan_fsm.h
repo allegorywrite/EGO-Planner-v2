@@ -9,6 +9,7 @@
 #include <ros/ros.h>
 #include <std_msgs/Empty.h>
 #include <std_msgs/Float64.h>
+#include <std_msgs/Bool.h>
 #include <vector>
 #include <visualization_msgs/Marker.h>
 
@@ -21,6 +22,7 @@
 #include <traj_utils/planning_visualization.h>
 #include <traj_utils/PolyTraj.h>
 #include <traj_utils/MINCOTraj.h>
+#include <traj_utils/Trajectory.h>
 
 using std::vector;
 
@@ -53,7 +55,8 @@ namespace ego_planner
     {
       MANUAL_TARGET = 1,
       PRESET_TARGET = 2,
-      REFENCE_PATH = 3
+      REFENCE_PATH = 3,
+      SERVICE_TARGET = 4
     };
 
     /* planning utils */
@@ -73,6 +76,8 @@ namespace ego_planner
     bool enable_ground_height_measurement_;
     bool flag_escape_emergency_;
 
+    bool reach_goal;
+
     bool have_trigger_, have_target_, have_odom_, have_new_target_, have_recv_pre_agent_, touch_goal_, mandatory_stop_;
     FSM_EXEC_STATE exec_state_;
     int continously_called_times_{0};
@@ -86,8 +91,9 @@ namespace ego_planner
     /* ROS utils */
     ros::NodeHandle node_;
     ros::Timer exec_timer_, safety_timer_;
-    ros::Subscriber waypoint_sub_, odom_sub_, trigger_sub_, broadcast_ploytraj_sub_, mandatory_stop_sub_;
-    ros::Publisher poly_traj_pub_, data_disp_pub_, broadcast_ploytraj_pub_, heartbeat_pub_, ground_height_pub_;
+    ros::Subscriber waypoint_sub_, odom_sub_, trigger_sub_, broadcast_ploytraj_sub_, mandatory_stop_sub_, path_sub_;
+    ros::Publisher poly_traj_pub_, data_disp_pub_, broadcast_ploytraj_pub_, heartbeat_pub_, ground_height_pub_, reach_goal_pub_;
+    ros::ServiceServer trajectory_srv_;
 
     /* state machine functions */
     void execFSMCallback(const ros::TimerEvent &e);
@@ -108,7 +114,10 @@ namespace ego_planner
     void waypointCallback(const quadrotor_msgs::GoalSetPtr &msg);
     void readGivenWpsAndPlan();
     bool planNextWaypoint(const Eigen::Vector3d next_wp);
-    bool mondifyInCollisionFinalGoal();
+    bool planNextWaypointModified(const Eigen::Vector3d next_wp);
+
+    /* service */
+    bool trajectoryCallback(traj_utils::Trajectory::Request &req, traj_utils::Trajectory::Response &res);
 
     /* input-output */
     void mandatoryStopCallback(const std_msgs::Empty &msg);

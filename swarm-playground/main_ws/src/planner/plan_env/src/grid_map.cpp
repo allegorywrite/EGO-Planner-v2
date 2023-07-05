@@ -203,6 +203,7 @@ void GridMap::visCallback(const ros::TimerEvent & /*event*/)
 
 void GridMap::fadingCallback(const ros::TimerEvent & /*event*/)
 {
+  // cout << "fadingCallback" << endl;
   const double reduce = (mp_.clamp_max_log_ - mp_.min_occupancy_log_) / (mp_.fading_time_ * 2); // function called at 2Hz
   const double low_thres = mp_.clamp_min_log_ + reduce;
 
@@ -339,6 +340,8 @@ void GridMap::odomCallback(const nav_msgs::OdometryConstPtr &odom)
 void GridMap::cloudCallback(const sensor_msgs::PointCloud2ConstPtr &img)
 {
   /* Note: no obstalce elimination in this function! */
+
+  // cout << "cloud callback" << endl;
 
   if (!md_.has_odom_)
   {

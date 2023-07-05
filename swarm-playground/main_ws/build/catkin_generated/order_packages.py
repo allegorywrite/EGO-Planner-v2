@@ -1,0 +1,5 @@
+# generated from catkin/cmake/template/order_packages.context.py.in
+source_root_dir = '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src'
+whitelisted_packages = ''.split(';') if '' != '' else []
+blacklisted_packages = ''.split(';') if '' != '' else []
+underlay_workspaces = '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel;/home/tomoking/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel;/home/tomoking/catkin_ws/devel;/opt/ros/noetic' != '' else []

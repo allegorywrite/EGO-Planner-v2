@@ -12,6 +12,8 @@ namespace ego_planner
     have_recv_pre_agent_ = false;
     flag_escape_emergency_ = true;
     mandatory_stop_ = false;
+    reach_goal = false;
+    node_ = nh;
 
     /*  fsm param  */
     nh.param("fsm/flight_type", target_type_, -1);
@@ -57,6 +59,7 @@ namespace ego_planner
     data_disp_pub_ = nh.advertise<traj_utils::DataDisp>("planning/data_display", 100);
     heartbeat_pub_ = nh.advertise<std_msgs::Empty>("planning/heartbeat", 10);
     ground_height_pub_ = nh.advertise<std_msgs::Float64>("/ground_height_measurement", 10);
+    reach_goal_pub_ = nh.advertise<std_msgs::Bool>("planning/reach_goal", 10);
 
     if (target_type_ == TARGET_TYPE::MANUAL_TARGET)
     {
@@ -75,6 +78,12 @@ namespace ego_planner
       }
 
       readGivenWpsAndPlan();
+    }
+    else if (target_type_ == TARGET_TYPE::SERVICE_TARGET)
+    {
+      cout << "service_target" << endl;
+      trajectory_srv_ = nh.advertiseService("planning/trajectory_service", &EGOReplanFSM::trajectoryCallback, this);
+      ros::spin();
     }
     else
       cout << "Wrong target_type_ value! target_type_=" << target_type_ << endl;
@@ -194,6 +203,10 @@ namespace ego_planner
       {
         have_target_ = false;
         have_trigger_ = false;
+        reach_goal = true;
+        std_msgs::Bool data_pub;
+        data_pub.data = reach_goal;
+        reach_goal_pub_.publish(data_pub);
 
         if (target_type_ == TARGET_TYPE::PRESET_TARGET)
         {
@@ -586,12 +599,49 @@ namespace ego_planner
       return;
 
     ROS_INFO("Received goal: %f, %f, %f", msg->goal[0], msg->goal[1], msg->goal[2]);
+    reach_goal = false;
+    std_msgs::Bool data_pub;
+    data_pub.data = reach_goal;
+    reach_goal_pub_.publish(msg);
 
     Eigen::Vector3d end_wp(msg->goal[0], msg->goal[1], msg->goal[2]);
     if (planNextWaypoint(end_wp))
     {
       have_trigger_ = true;
     }
+  }
+
+  bool EGOReplanFSM::trajectoryCallback(traj_utils::Trajectory::Request &req, traj_utils::Trajectory::Response &res)
+  {
+    if (req.goalset.drone_id != planner_manager_->pp_.drone_id || req.goalset.goal[2] < -0.1)
+      return false;
+
+    ROS_INFO("Received goal: %f, %f, %f", req.goalset.goal[0], req.goalset.goal[1], req.goalset.goal[2]);
+
+    Eigen::Vector3d end_wp(req.goalset.goal[0], req.goalset.goal[1], req.goalset.goal[2]);
+    if (planNextWaypoint(end_wp))
+    {
+      have_trigger_ = true;
+    }
+    // reach_goalがtrueになるまで待つ
+    while (!reach_goal)
+    {
+      ros::spinOnce();
+      ros::Duration(0.001).sleep();
+    }
+    // TODO
+    std::stringstream ss;
+    ss << "/drone_" << req.goalset.drone_id << "_odom_visualization/path";
+    std::string topic_name = ss.str();
+    boost::shared_ptr<nav_msgs::Path const> path_ptr = ros::topic::waitForMessage<nav_msgs::Path>(topic_name, node_);
+    if (path_ptr == NULL)
+    {
+      ROS_ERROR("No path received");
+      return false;
+    }
+    nav_msgs::Path path = *path_ptr;
+    res.path = path;
+    return true;
   }
 
   void EGOReplanFSM::readGivenWpsAndPlan()

@@ -648,6 +648,7 @@ void GridMap::clearAndInflateLocalMap()
             {
               continue;
             }
+            cout << "inf_pt: " << inf_pt << endl;
             md_.occupancy_buffer_inflate_[idx_inf] = 1;
           }
         }
@@ -795,6 +796,8 @@ void GridMap::cloudCallback(const sensor_msgs::PointCloud2ConstPtr &img)
     return;
   }
 
+  std::cout << "\n\n\n\n\n\n\ncloud Call !!!\n\n\n\n\n\n" << std::endl;
+
   if (latest_cloud.points.size() == 0)
     return;
 
@@ -862,6 +865,7 @@ void GridMap::cloudCallback(const sensor_msgs::PointCloud2ConstPtr &img)
 
             int idx_inf = toAddress(inf_pt);
 
+            cout << "inf_pt_2: " << inf_pt << endl;
             md_.occupancy_buffer_inflate_[idx_inf] = 1;
           }
     }
@@ -957,6 +961,7 @@ void GridMap::publishMapInflate(bool all_info)
     for (int y = min_cut(1); y <= max_cut(1); ++y)
       for (int z = min_cut(2); z <= max_cut(2); ++z)
       {
+        cout << "x: " << x << " y: " << y << " z: " << z << endl;
         if (md_.occupancy_buffer_inflate_[toAddress(x, y, z)] == 0)
           continue;
 
