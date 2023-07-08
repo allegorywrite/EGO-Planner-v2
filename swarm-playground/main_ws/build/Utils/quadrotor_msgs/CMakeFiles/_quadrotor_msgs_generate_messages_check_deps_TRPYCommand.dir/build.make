@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/
 include Utils/quadrotor_msgs/CMakeFiles/_quadrotor_msgs_generate_messages_check_deps_TRPYCommand.dir/progress.make
 
 Utils/quadrotor_msgs/CMakeFiles/_quadrotor_msgs_generate_messages_check_deps_TRPYCommand:
-	cd /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/quadrotor_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py quadrotor_msgs /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/TRPYCommand.msg quadrotor_msgs/AuxCommand:std_msgs/Header
+	cd /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/quadrotor_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py quadrotor_msgs /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/TRPYCommand.msg std_msgs/Header:quadrotor_msgs/AuxCommand
 
 _quadrotor_msgs_generate_messages_check_deps_TRPYCommand: Utils/quadrotor_msgs/CMakeFiles/_quadrotor_msgs_generate_messages_check_deps_TRPYCommand
 _quadrotor_msgs_generate_messages_check_deps_TRPYCommand: Utils/quadrotor_msgs/CMakeFiles/_quadrotor_msgs_generate_messages_check_deps_TRPYCommand.dir/build.make

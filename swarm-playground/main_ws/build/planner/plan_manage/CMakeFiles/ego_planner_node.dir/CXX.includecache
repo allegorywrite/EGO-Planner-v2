@@ -250,14 +250,6 @@ plan_manage/ego_replan_fsm.h
 plan_manage/ego_replan_fsm.h
 -
 
-/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/src/planner_manager.cpp
-plan_manage/planner_manager.h
--
-thread
--
-visualization_msgs/Marker.h
-/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/src/visualization_msgs/Marker.h
-
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_opt/include/optimizer/lbfgs.hpp
 cstdint
 -

@@ -2,4 +2,4 @@
 source_root_dir = '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel;/home/tomoking/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel;/home/tomoking/catkin_ws/devel;/opt/ros/noetic' != '' else []
+underlay_workspaces = '/opt/ros/noetic'.split(';') if '/opt/ros/noetic' != '' else []

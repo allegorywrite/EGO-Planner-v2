@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   quadrotor_msgs
+  tf2_sensor_msgs
   plan_env
   path_searching
   traj_opt

@@ -250,6 +250,14 @@
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/CMakeFiles/install/strip.dir
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/CMakeFiles/so3_control_nodelet.dir
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/CMakeFiles/SO3Control.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/install/strip.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/install/local.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/install.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/list_install_components.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/rebuild_cache.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/edit_cache.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/test.dir
+/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/training_data_manager/CMakeFiles/training_data_manager.dir
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/planner/traj_utils/CMakeFiles/install/local.dir
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/planner/traj_utils/CMakeFiles/list_install_components.dir
 /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/planner/traj_utils/CMakeFiles/traj_utils_genpy.dir

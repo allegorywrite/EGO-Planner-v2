@@ -1988,6 +1988,19 @@ SO3Control/fast:
 .PHONY : SO3Control/fast
 
 #=============================================================================
+# Target rules for targets named training_data_manager
+
+# Build rule for target.
+training_data_manager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 training_data_manager
+.PHONY : training_data_manager
+
+# fast build rule for target.
+training_data_manager/fast:
+	$(MAKE) -f Utils/training_data_manager/CMakeFiles/training_data_manager.dir/build.make Utils/training_data_manager/CMakeFiles/training_data_manager.dir/build
+.PHONY : training_data_manager/fast
+
+#=============================================================================
 # Target rules for targets named traj_utils_genpy
 
 # Build rule for target.
@@ -2751,6 +2764,7 @@ help:
 	@echo "... control_example"
 	@echo "... so3_control_nodelet"
 	@echo "... SO3Control"
+	@echo "... training_data_manager"
 	@echo "... traj_utils_genpy"
 	@echo "... traj_utils_generate_messages"
 	@echo "... _traj_utils_generate_messages_check_deps_DataDisp"

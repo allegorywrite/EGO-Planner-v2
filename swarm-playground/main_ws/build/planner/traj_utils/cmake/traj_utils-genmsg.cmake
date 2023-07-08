@@ -34,7 +34,7 @@ add_custom_target(_traj_utils_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv" NAME_WE)
 add_custom_target(_traj_utils_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "traj_utils" "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv" "geometry_msgs/Pose:nav_msgs/Path:geometry_msgs/PoseStamped:std_msgs/Header:quadrotor_msgs/GoalSet:geometry_msgs/Point:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "traj_utils" "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv" "geometry_msgs/Quaternion:geometry_msgs/Pose:quadrotor_msgs/GoalSet:geometry_msgs/PoseStamped:nav_msgs/Path:std_msgs/Header:geometry_msgs/Point"
 )
 
 #
@@ -66,7 +66,7 @@ _generate_msg_cpp(traj_utils
 _generate_srv_cpp(traj_utils
   "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/traj_utils
 )
 
@@ -123,7 +123,7 @@ _generate_msg_eus(traj_utils
 _generate_srv_eus(traj_utils
   "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/traj_utils
 )
 
@@ -180,7 +180,7 @@ _generate_msg_lisp(traj_utils
 _generate_srv_lisp(traj_utils
   "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/traj_utils
 )
 
@@ -237,7 +237,7 @@ _generate_msg_nodejs(traj_utils
 _generate_srv_nodejs(traj_utils
   "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/traj_utils
 )
 
@@ -294,7 +294,7 @@ _generate_msg_py(traj_utils
 _generate_srv_py(traj_utils
   "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/traj_utils/srv/Trajectory.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/quadrotor_msgs/msg/GoalSet.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/nav_msgs/cmake/../msg/Path.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/traj_utils
 )
 

@@ -868,6 +868,7 @@ void GridMap::publishMap()
   sensor_msgs::PointCloud2 cloud_msg;
 
   pcl::toROSMsg(cloud, cloud_msg);
+  cloud_msg.header.stamp = ros::Time::now();
   map_pub_.publish(cloud_msg);
 }
 
