@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/poscmd_2_odom/poscmd_2_odom"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/poscmd_2_odom/poscmd_2_odom.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/poscmd_2_odom/poscmd_2_odom"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/poscmd_2_odom/poscmd_2_odom.pdb"
   "CMakeFiles/poscmd_2_odom.dir/src/poscmd_2_odom.cpp.o"
 )
 

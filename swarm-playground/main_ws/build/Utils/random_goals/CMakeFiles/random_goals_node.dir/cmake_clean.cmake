@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/random_goals/random_goals_node"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/random_goals/random_goals_node.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/random_goals/random_goals_node"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/random_goals/random_goals_node.pdb"
   "CMakeFiles/random_goals_node.dir/src/random_goals_node.cpp.o"
 )
 

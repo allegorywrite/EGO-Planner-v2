@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libtraj_utils.pdb"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libtraj_utils.so"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libtraj_utils.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libtraj_utils.so"
   "CMakeFiles/traj_utils.dir/src/planning_visualization.cpp.o"
 )
 

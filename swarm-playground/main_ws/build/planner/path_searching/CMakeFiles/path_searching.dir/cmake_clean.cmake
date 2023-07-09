@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libpath_searching.pdb"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libpath_searching.so"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libpath_searching.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libpath_searching.so"
   "CMakeFiles/path_searching.dir/src/dyn_a_star.cpp.o"
 )
 

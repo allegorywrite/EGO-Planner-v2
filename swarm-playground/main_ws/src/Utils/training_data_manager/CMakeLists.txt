@@ -4,6 +4,8 @@ project(training_data_manager)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
+set(yaml-cpp_DIR /usr/lib/x86_64-linux-gnu/cmake/yaml-cpp)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -16,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
   quadrotor_msgs
   nav_msgs
+  yaml-cpp
 )
 
 ## System dependencies are found with CMake's conventions
@@ -123,6 +126,7 @@ catkin_package(
 include_directories(include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
+  ${YAML_CPP_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
@@ -156,6 +160,7 @@ add_executable(training_data_manager
 ## Specify libraries to link a library or executable target against
 target_link_libraries(training_data_manager
   ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
 )
 
 #############

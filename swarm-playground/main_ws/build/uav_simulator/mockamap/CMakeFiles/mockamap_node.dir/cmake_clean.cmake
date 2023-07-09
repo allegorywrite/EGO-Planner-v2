@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/mockamap/mockamap_node"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/mockamap/mockamap_node.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/mockamap/mockamap_node"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/mockamap/mockamap_node.pdb"
   "CMakeFiles/mockamap_node.dir/src/ces_randommap.cpp.o"
   "CMakeFiles/mockamap_node.dir/src/maps.cpp.o"
   "CMakeFiles/mockamap_node.dir/src/mockamap.cpp.o"

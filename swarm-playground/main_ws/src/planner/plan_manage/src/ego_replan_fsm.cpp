@@ -599,10 +599,10 @@ namespace ego_planner
       return;
 
     ROS_INFO("Received goal: %f, %f, %f", msg->goal[0], msg->goal[1], msg->goal[2]);
-    reach_goal = false;
-    std_msgs::Bool data_pub;
-    data_pub.data = reach_goal;
-    reach_goal_pub_.publish(msg);
+    // reach_goal = false;
+    // std_msgs::Bool data_pub;
+    // data_pub.data = reach_goal;
+    // reach_goal_pub_.publish(msg);
 
     Eigen::Vector3d end_wp(msg->goal[0], msg->goal[1], msg->goal[2]);
     if (planNextWaypoint(end_wp))

@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -Wall -O3 -g   -DGTEST_HAS_PTHREAD=1
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"uav_utils\"
 
-CXX_INCLUDES = -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/uav_utils/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest 
+CXX_INCLUDES = -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/uav_utils/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest 
 

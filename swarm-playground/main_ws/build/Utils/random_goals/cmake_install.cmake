@@ -1,8 +1,8 @@
-# Install script for directory: /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/random_goals
+# Install script for directory: /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/random_goals
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goals.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goals.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/random_goals/cmake" TYPE FILE FILES
-    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goalsConfig.cmake"
-    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goalsConfig-version.cmake"
+    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goalsConfig.cmake"
+    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/random_goals/catkin_generated/installspace/random_goalsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/random_goals" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/random_goals/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/random_goals" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/random_goals/package.xml")
 endif()
 

@@ -65,6 +65,7 @@
   <depend>nav_msgs</depend>
   <depend>quadrotor_msgs</depend>
   <depend>Eigen3</depend> 
+  <depend>yaml-cpp</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

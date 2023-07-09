@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/include/so3_control/SO3Control.h
+/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/include/so3_control/SO3Control.h
 Eigen/Geometry
 -
 
-/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/src/SO3Control.cpp
+/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/src/SO3Control.cpp
 iostream
 -
 so3_control/SO3Control.h

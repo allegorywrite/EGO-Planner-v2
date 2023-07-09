@@ -18,6 +18,7 @@
 #include <numeric>
 #include <fstream>
 #include <filesystem>
+#include <yaml-cpp/yaml.h>
 
 namespace training_data_manager
 {
@@ -27,6 +28,7 @@ namespace training_data_manager
         TrainingDataManager(ros::NodeHandle &nh);
         ~TrainingDataManager();
         void generateGoal();
+        bool EpisodeIsFinished();
 
     private:
         ros::NodeHandle nh_;
@@ -40,10 +42,13 @@ namespace training_data_manager
 
         int total_drones_;
         int dim_per_drone_;
+        int max_episode_num_;
+        int episode_count_;
         double snapshot_interval_;
         bool goal_generated_;
         double waypoint_safe_radius_A2O_;
         double waypoint_safe_radius_A2A_;
+        ros::Time goal_generated_time_;
         std::vector<bool> reached_goal_flag_;
         std::vector<Eigen::Vector3d> goal_of_all_drones_;
 

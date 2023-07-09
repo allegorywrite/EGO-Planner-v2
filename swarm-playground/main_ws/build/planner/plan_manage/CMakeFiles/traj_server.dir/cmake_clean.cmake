@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/ego_planner/traj_server"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/ego_planner/traj_server.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/ego_planner/traj_server"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/ego_planner/traj_server.pdb"
   "CMakeFiles/traj_server.dir/src/traj_server.cpp.o"
 )
 

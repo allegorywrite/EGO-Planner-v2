@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "${prefix}/include".split(';') if "${prefix}/i
 PROJECT_CATKIN_DEPENDS = "plan_env;path_searching;traj_opt;traj_utils".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "-lego_planner".split(';') if "-lego_planner" != "" else []
 PROJECT_NAME = "ego_planner"
-PROJECT_SPACE_DIR = "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install"
+PROJECT_SPACE_DIR = "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install"
 PROJECT_VERSION = "0.0.0"

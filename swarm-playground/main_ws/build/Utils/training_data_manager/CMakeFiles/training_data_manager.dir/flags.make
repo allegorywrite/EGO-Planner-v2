@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = -DDISABLE_LIBUSB_1_0 -DDISABLE_PCAP -DDISABLE_PNG -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"training_data_manager\" -Dqh_QHpointer -DvtkRenderingContext2D_AUTOINIT="1(vtkRenderingContextOpenGL2)" -DvtkRenderingCore_AUTOINIT="3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)"
 
-CXX_INCLUDES = -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/training_data_manager/include -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 -I/usr/include/pcl-1.10 -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/ni -I/usr/include/openni2 
+CXX_INCLUDES = -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/training_data_manager/include -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 -I/usr/include/pcl-1.10 -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/lib/x86_64-linux-gnu/cmake/yaml-cpp/../../../../../include -I/usr/include/ni -I/usr/include/openni2 
 

@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_DataDisp.py"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_MINCOTraj.py"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_PolyTraj.py"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/__init__.py"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/srv/_Trajectory.py"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/srv/__init__.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_DataDisp.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_MINCOTraj.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/_PolyTraj.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/msg/__init__.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/srv/_Trajectory.py"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages/traj_utils/srv/__init__.py"
   "CMakeFiles/traj_utils_generate_messages_py"
 )
 

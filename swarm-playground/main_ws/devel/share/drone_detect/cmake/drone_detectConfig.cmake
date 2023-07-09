@@ -67,14 +67,14 @@ set(drone_detect_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(drone_detect_SOURCE_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect)
-  set(drone_detect_DEVEL_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel)
+  set(drone_detect_SOURCE_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect)
+  set(drone_detect_DEVEL_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel)
   set(drone_detect_INSTALL_PREFIX "")
   set(drone_detect_PREFIX ${drone_detect_DEVEL_PREFIX})
 else()
   set(drone_detect_SOURCE_PREFIX "")
   set(drone_detect_DEVEL_PREFIX "")
-  set(drone_detect_INSTALL_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install)
+  set(drone_detect_INSTALL_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install)
   set(drone_detect_PREFIX ${drone_detect_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(drone_detect_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/include;/usr/include/eigen3;/usr/include/opencv4;/usr/include " STREQUAL " ")
+if(NOT "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/include;/usr/include/eigen3;/usr/include/opencv4;/usr/include " STREQUAL " ")
   set(drone_detect_INCLUDE_DIRS "")
-  set(_include_dirs "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/include;/usr/include/eigen3;/usr/include/opencv4;/usr/include")
+  set(_include_dirs "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/include;/usr/include/eigen3;/usr/include/opencv4;/usr/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner
         message(FATAL_ERROR "Project 'drone_detect' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'drone_detect' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'drone_detect' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/drone_detect/${idir}'.  ${_report}")
     endif()
     _list_append_unique(drone_detect_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

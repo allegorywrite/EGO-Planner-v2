@@ -8,11 +8,13 @@ namespace training_data_manager
         nh_ = nh;
         dim_per_drone_ = 14;
         goal_generated_ = false;
+        episode_count_ = 0;
         waypoint_safe_radius_A2O_ = 0.1;
         waypoint_safe_radius_A2A_ = 0.5;
         /* parameter */
         nh.param("total_drones", total_drones_, 3);
         nh.param("snapshot_interval", snapshot_interval_, 0.05);
+        nh.param("max_episode_num", max_episode_num_, 3);
         /* flag vector */
         reached_goal_flag_.resize(total_drones_, false);
         goal_of_all_drones_.resize(total_drones_, Eigen::Vector3d::Zero());
@@ -41,9 +43,9 @@ namespace training_data_manager
             std::string goal_topic = "/drone_" + std::to_string(i) + "_planning/reach_goal";
             std::string inflate_topic = "/drone_" + std::to_string(i) + "_ego_planner_node/grid_map/occupancy";
 
-            odom_subs_.push_back(nh.subscribe<nav_msgs::Odometry>(odom_topic, 10, boost::bind(&TrainingDataManager::odomCallback, this, _1, i)));
-            reach_goal_subs_.push_back(nh.subscribe<std_msgs::Bool>(goal_topic, 10, boost::bind(&TrainingDataManager::reachGoalCallback, this, _1, i)));
-            local_point_cloud_subs_.push_back(nh.subscribe<sensor_msgs::PointCloud2>(inflate_topic, 10, boost::bind(&TrainingDataManager::localPointCloudCallback, this, _1, i)));
+            odom_subs_.push_back(nh.subscribe<nav_msgs::Odometry>(odom_topic, 1000, boost::bind(&TrainingDataManager::odomCallback, this, _1, i)));
+            reach_goal_subs_.push_back(nh.subscribe<std_msgs::Bool>(goal_topic, 1000, boost::bind(&TrainingDataManager::reachGoalCallback, this, _1, i)));
+            local_point_cloud_subs_.push_back(nh.subscribe<sensor_msgs::PointCloud2>(inflate_topic, 1000, boost::bind(&TrainingDataManager::localPointCloudCallback, this, _1, i)));
         }
     }
 
@@ -82,8 +84,8 @@ namespace training_data_manager
     {
         if (!goal_generated_)
             return;
-        ROS_INFO("Drone %d reached goal", drone_id);
         reached_goal_flag_[drone_id] = msg->data;
+        ROS_INFO("Reached goal drones: %d", (int)std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true));
         // 事前に設定した割合のドローンがゴールに到達したらデータを保存する
         if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.8)
         {
@@ -92,7 +94,31 @@ namespace training_data_manager
             snapshot_timer_.stop();
             saveData();
             reset();
+            if(episode_count_ >= max_episode_num_)
+            {
+                ROS_INFO("Finished training data generation");
+                ros::shutdown();
+            }else{
+                ROS_INFO("Start episode %d", episode_count_);
+                generateGoal();
+            }
         }
+    }
+
+    bool TrainingDataManager::EpisodeIsFinished()
+    {
+        if (!goal_generated_)
+            return false;
+        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.8)
+        {
+            ROS_INFO("Save training data");
+            goal_generated_ = false;
+            snapshot_timer_.stop();
+            saveData();
+            reset();
+            return true;
+        }
+        return false;
     }
 
     void TrainingDataManager::generateGoal()
@@ -131,6 +157,7 @@ namespace training_data_manager
             }
         }
         goal_generated_ = true;
+        episode_count_++;
         snapshot_timer_.start();
     }
 
@@ -184,23 +211,37 @@ namespace training_data_manager
 
     void TrainingDataManager::reset()
     {
-        // データをリセットする
         goal_generated_ = false;
-        map_snapshot_of_all_drones_.clear();
+        snapshot_timer_.stop();
+
+        /* flag vector */
+        reached_goal_flag_.clear();
+        reached_goal_flag_.resize(total_drones_, false);
         goal_of_all_drones_.clear();
+        goal_of_all_drones_.resize(total_drones_, Eigen::Vector3d::Zero());
+        /* snapshot vector */
+        state_snapshot_of_all_drones_.clear();
+        state_snapshot_of_all_drones_.resize(total_drones_, Eigen::VectorXd::Zero(dim_per_drone_));
+        map_snapshot_of_all_drones_.clear();
+        map_snapshot_of_all_drones_.resize(total_drones_, pcl::PointCloud<pcl::PointXYZ>());
+        /* sequence vector */
+        state_seq_of_all_drones_.clear();
+        map_seq_of_all_drones_.clear();
     }
 
     void TrainingDataManager::saveData()
     {
         int random_number = rand() % (99999999 + 1 - 10000000) + 10000000;
         std::string home = std::getenv("HOME");
-        std::string state_file_path 
-            = home + "/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
-        std::string map_file_path 
-            = home + "/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
+        std::string replay_file_path 
+            = home + "/drone/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
+        std::string vision_file_path 
+            = home + "/drone/polka_dot/data/training/vision/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
+        std::string map_file_path
+            = home + "/drone/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".yaml";
 
-        // save state_seq_of_all_drones_ to csv
-        std::ofstream state_file(state_file_path);
+        // リプレイデータをcsvで保存
+        std::ofstream state_file(replay_file_path);
         for (const auto& snapshot : state_seq_of_all_drones_) {
             for (int t = 0; t < snapshot.size(); ++t) {
                 Eigen::VectorXd state_of_each_drone = snapshot[t];
@@ -214,15 +255,31 @@ namespace training_data_manager
         }
         state_file.close();
         
-        // save map_seq_of_all_drones_ to pcd files
+        // 点群データをpcdで保存
         for (int t = 0; t < map_seq_of_all_drones_.size(); ++t) {
             for (int i = 0; i < map_seq_of_all_drones_[t].size(); ++i) {
                 if(map_seq_of_all_drones_[t][i].size() == 0)
                     // 点群がない場合は特殊な値を入れる
                     map_seq_of_all_drones_[t][i].push_back(pcl::PointXYZ(0, 0, 0));
-                pcl::io::savePCDFileASCII(map_file_path + "_agent" + std::to_string(i) + "_timestep" + std::to_string(t) + ".pcd", map_seq_of_all_drones_[t][i]);
+                pcl::io::savePCDFileASCII(vision_file_path + "_agent" + std::to_string(i) + "_timestep" + std::to_string(t) + ".pcd", map_seq_of_all_drones_[t][i]);
             }
         }
-        ROS_INFO("Saved data to %s and %s", state_file_path.c_str(), map_file_path.c_str());
+
+        // マップデータをyamlで保存
+        YAML::Node agents = YAML::Node();
+        for (int i = 0; i < total_drones_; ++i) {
+            YAML::Node agent = YAML::Node();
+            agent["name"] = "agent" + std::to_string(i);
+            std::vector<double> goal = {goal_of_all_drones_[i].x(), goal_of_all_drones_[i].y(), goal_of_all_drones_[i].z()};
+            agent["goal"] = goal;
+            agents.push_back(agent);
+        }
+        YAML::Node map = YAML::Node();
+        map["agents"] = agents;
+        std::ofstream map_file(map_file_path);
+        map_file << map;
+        map_file.close();
+
+        ROS_INFO("Saved data to %s, %s and %s", replay_file_path.c_str(), vision_file_path.c_str(), map_file_path.c_str());
     }
 }

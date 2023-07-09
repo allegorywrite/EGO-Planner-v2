@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/moving_obstacles/moving_obstacles"
-  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/moving_obstacles/moving_obstacles.pdb"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/moving_obstacles/moving_obstacles"
+  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/moving_obstacles/moving_obstacles.pdb"
   "CMakeFiles/moving_obstacles.dir/src/moving_obstacles.cpp.o"
 )
 

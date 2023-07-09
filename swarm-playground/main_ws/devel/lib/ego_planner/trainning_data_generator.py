@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/trainning_data_generator.py'
+python_script = '/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/trainning_data_generator.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,
