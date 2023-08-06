@@ -7,10 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH='/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel:/opt/ros/noetic:/usr/lib/x86_64-linux-gnu/cmake/yaml-cpp'
-export LD_LIBRARY_PATH="/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD='/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build'
-export PYTHONPATH="/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES='/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src:$ROS_PACKAGE_PATH"

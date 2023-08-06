@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libSO3Control.pdb"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libSO3Control.so"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libSO3Control.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libSO3Control.so"
   "CMakeFiles/SO3Control.dir/src/SO3Control.cpp.o"
 )
 

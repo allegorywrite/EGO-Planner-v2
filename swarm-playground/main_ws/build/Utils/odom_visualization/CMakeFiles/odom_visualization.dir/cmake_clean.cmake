@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/odom_visualization/odom_visualization"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/odom_visualization/odom_visualization.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/odom_visualization/odom_visualization"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/odom_visualization/odom_visualization.pdb"
   "CMakeFiles/odom_visualization.dir/src/odom_visualization.cpp.o"
 )
 

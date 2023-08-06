@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_control/control_example"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_control/control_example.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_control/control_example"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_control/control_example.pdb"
   "CMakeFiles/control_example.dir/src/control_example.cpp.o"
 )
 

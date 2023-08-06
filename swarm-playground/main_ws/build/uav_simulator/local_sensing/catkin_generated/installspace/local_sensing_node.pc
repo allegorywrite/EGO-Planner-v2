@@ -1,4 +1,4 @@
-prefix=/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install
+prefix=/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install
 
 Name: local_sensing_node
 Description: Description of local_sensing_node

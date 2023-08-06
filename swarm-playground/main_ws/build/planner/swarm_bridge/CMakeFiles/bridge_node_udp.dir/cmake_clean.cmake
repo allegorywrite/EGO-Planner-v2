@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/swarm_bridge/bridge_node_udp"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/swarm_bridge/bridge_node_udp.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/swarm_bridge/bridge_node_udp"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/swarm_bridge/bridge_node_udp.pdb"
   "CMakeFiles/bridge_node_udp.dir/src/bridge_node_udp.cpp.o"
 )
 

@@ -73,8 +73,8 @@ namespace training_data_manager
     {
         Eigen::VectorXd state(dim_per_drone_);
         state << msg->header.stamp.toSec(), msg->pose.pose.position.x, msg->pose.pose.position.y, msg->pose.pose.position.z,
-                 msg->twist.twist.linear.x, msg->twist.twist.linear.y, msg->twist.twist.linear.z,
                  msg->pose.pose.orientation.w, msg->pose.pose.orientation.x, msg->pose.pose.orientation.y, msg->pose.pose.orientation.z,
+                 msg->twist.twist.linear.x, msg->twist.twist.linear.y, msg->twist.twist.linear.z,
                  msg->twist.twist.angular.x, msg->twist.twist.angular.y, msg->twist.twist.angular.z;
         state_snapshot_of_all_drones_[drone_id] = state;
         // state_snapshot_flag_[drone_id] = true;
@@ -234,11 +234,11 @@ namespace training_data_manager
         int random_number = rand() % (99999999 + 1 - 10000000) + 10000000;
         std::string home = std::getenv("HOME");
         std::string replay_file_path 
-            = home + "/drone/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
+            = home + "/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
         std::string vision_file_path 
-            = home + "/drone/polka_dot/data/training/vision/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
+            = home + "/polka_dot/data/training/vision/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
         std::string map_file_path
-            = home + "/drone/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".yaml";
+            = home + "/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".yaml";
 
         // リプレイデータをcsvで保存
         std::ofstream state_file(replay_file_path);
@@ -256,14 +256,15 @@ namespace training_data_manager
         state_file.close();
         
         // 点群データをpcdで保存
-        for (int t = 0; t < map_seq_of_all_drones_.size(); ++t) {
-            for (int i = 0; i < map_seq_of_all_drones_[t].size(); ++i) {
-                if(map_seq_of_all_drones_[t][i].size() == 0)
-                    // 点群がない場合は特殊な値を入れる
-                    map_seq_of_all_drones_[t][i].push_back(pcl::PointXYZ(0, 0, 0));
-                pcl::io::savePCDFileASCII(vision_file_path + "_agent" + std::to_string(i) + "_timestep" + std::to_string(t) + ".pcd", map_seq_of_all_drones_[t][i]);
-            }
-        }
+        // for (int t = 0; t < map_seq_of_all_drones_.size(); ++t) {
+        //     for (int i = 0; i < map_seq_of_all_drones_[t].size(); ++i) {
+        //         if(map_seq_of_all_drones_[t][i].size() == 0)
+        //             // 点群がない場合は特殊な値を入れる
+        //             map_seq_of_all_drones_[t][i].push_back(pcl::PointXYZ(0, 0, 0));
+        //         pcl::io::savePCDFileASCII(vision_file_path + "_agent" + std::to_string(i) + "_timestep" + std::to_string(t) + ".pcd", map_seq_of_all_drones_[t][i]);
+        //     }
+        // }
+        pcl::io::savePCDFileASCII(vision_file_path, global_point_cloud_);
 
         // マップデータをyamlで保存
         YAML::Node agents = YAML::Node();

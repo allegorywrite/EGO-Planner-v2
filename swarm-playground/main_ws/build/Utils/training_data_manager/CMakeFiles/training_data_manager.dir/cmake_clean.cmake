@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/training_data_manager/training_data_manager"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/training_data_manager/training_data_manager.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/training_data_manager/training_data_manager"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/training_data_manager/training_data_manager.pdb"
   "CMakeFiles/training_data_manager.dir/src/training_data_manager.cpp.o"
   "CMakeFiles/training_data_manager.dir/src/training_data_manager_node.cpp.o"
 )

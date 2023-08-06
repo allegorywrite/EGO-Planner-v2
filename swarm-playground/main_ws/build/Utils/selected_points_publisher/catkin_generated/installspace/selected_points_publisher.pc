@@ -1,4 +1,4 @@
-prefix=/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install
+prefix=/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install
 
 Name: selected_points_publisher
 Description: Description of selected_points_publisher

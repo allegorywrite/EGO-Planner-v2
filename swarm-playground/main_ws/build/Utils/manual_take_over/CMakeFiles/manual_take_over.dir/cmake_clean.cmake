@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/manual_take_over/manual_take_over"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/manual_take_over/manual_take_over.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/manual_take_over/manual_take_over"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/manual_take_over/manual_take_over.pdb"
   "CMakeFiles/manual_take_over.dir/src/manual_take_over.cpp.o"
 )
 

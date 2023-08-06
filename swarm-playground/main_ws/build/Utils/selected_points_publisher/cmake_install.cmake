@@ -1,8 +1,8 @@
-# Install script for directory: /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher
+# Install script for directory: /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisher.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisher.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/selected_points_publisher/cmake" TYPE FILE FILES
-    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisherConfig.cmake"
-    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisherConfig-version.cmake"
+    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisherConfig.cmake"
+    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/Utils/selected_points_publisher/catkin_generated/installspace/selected_points_publisherConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/selected_points_publisher" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/selected_points_publisher" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -59,7 +59,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libselected_points_publisher.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libselected_points_publisher.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/libselected_points_publisher.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libselected_points_publisher.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libselected_points_publisher.so")
     file(RPATH_CHANGE
@@ -76,6 +76,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/selected_points_publisher" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher/plugin_description.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/selected_points_publisher" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/selected_points_publisher/plugin_description.xml")
 endif()
 

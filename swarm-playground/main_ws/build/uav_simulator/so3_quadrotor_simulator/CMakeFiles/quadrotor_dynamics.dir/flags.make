@@ -6,5 +6,5 @@ CXX_FLAGS = -std=c++11 -O3 -Wall -g -fPIC   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"so3_quadrotor_simulator\" -Dquadrotor_dynamics_EXPORTS
 
-CXX_INCLUDES = -I/usr/include/eigen3 -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_quadrotor_simulator/include/ode -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_quadrotor_simulator/include -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/include -I/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/uav_utils/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/usr/include/eigen3 -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_quadrotor_simulator/include/ode -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_quadrotor_simulator/include -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/include -I/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/uav_utils/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

@@ -67,14 +67,14 @@ set(manual_take_over_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(manual_take_over_SOURCE_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/manual_take_over)
-  set(manual_take_over_DEVEL_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel)
+  set(manual_take_over_SOURCE_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/Utils/manual_take_over)
+  set(manual_take_over_DEVEL_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel)
   set(manual_take_over_INSTALL_PREFIX "")
   set(manual_take_over_PREFIX ${manual_take_over_DEVEL_PREFIX})
 else()
   set(manual_take_over_SOURCE_PREFIX "")
   set(manual_take_over_DEVEL_PREFIX "")
-  set(manual_take_over_INSTALL_PREFIX /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install)
+  set(manual_take_over_INSTALL_PREFIX /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install)
   set(manual_take_over_PREFIX ${manual_take_over_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install/lib;/opt/ros/noetic/lib)
+    foreach(path /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

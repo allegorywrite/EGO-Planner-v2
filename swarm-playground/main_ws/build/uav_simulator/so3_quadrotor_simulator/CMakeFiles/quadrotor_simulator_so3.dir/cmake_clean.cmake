@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_quadrotor_simulator/quadrotor_simulator_so3"
-  "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_quadrotor_simulator/quadrotor_simulator_so3.pdb"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_quadrotor_simulator/quadrotor_simulator_so3"
+  "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel/lib/so3_quadrotor_simulator/quadrotor_simulator_so3.pdb"
   "CMakeFiles/quadrotor_simulator_so3.dir/src/quadrotor_simulator_so3.cpp.o"
 )
 

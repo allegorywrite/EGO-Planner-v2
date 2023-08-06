@@ -1,8 +1,8 @@
-# Install script for directory: /home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control
+# Install script for directory: /home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_control.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_control.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/so3_control/cmake" TYPE FILE FILES
-    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_controlConfig.cmake"
-    "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_controlConfig-version.cmake"
+    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_controlConfig.cmake"
+    "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/build/uav_simulator/so3_control/catkin_generated/installspace/so3_controlConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/so3_control" TYPE FILE FILES "/home/torobo/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/so3_control" TYPE FILE FILES "/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/src/uav_simulator/so3_control/package.xml")
 endif()
 
