@@ -57,5 +57,6 @@ target_link_libraries(traj_server ${catkin_LIBRARIES})
 catkin_install_python(PROGRAMS scripts/trajectory_client.py
   scripts/trainning_data_generator.py
   scripts/node_manager.py 
+  scripts/drone_manager.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
