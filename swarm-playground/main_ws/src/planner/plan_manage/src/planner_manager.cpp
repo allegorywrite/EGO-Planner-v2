@@ -62,6 +62,7 @@ namespace ego_planner
     if (!computeInitState(start_pt, start_vel, start_acc, local_target_pt, local_target_vel,
                           flag_polyInit, flag_randomPolyTraj, ts, initMJO))
     {
+      cout << "\033[47;30m\n[" << t_start << "] Drone " << pp_.drone_id << " Error in computeInitState\033[0m" << endl;
       return false;
     }
 
@@ -70,6 +71,7 @@ namespace ego_planner
     vector<std::pair<int, int>> segments;
     if (ploy_traj_opt_->finelyCheckAndSetConstraintPoints(segments, initMJO, true) == PolyTrajOptimizer::CHK_RET::ERR)
     {
+      cout << "\033[47;30m\n[" << t_start << "] Drone " << pp_.drone_id << " Error in finelyCheckAndSetConstraintPoints\033[0m" << endl;
       return false;
     }
 
@@ -87,7 +89,7 @@ namespace ego_planner
     vector<vector<Eigen::Vector3d>> vis_trajs;
     poly_traj::MinJerkOpt best_MJO;
 
-    // ROS_ERROR("BBBB");
+    cout << "\033[47;30m\n[" << t_start << "] Drone " << pp_.drone_id << " Start to optimize\033[0m" << endl;
 
     if (pp_.use_multitopology_trajs)
     {

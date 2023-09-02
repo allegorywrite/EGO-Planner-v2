@@ -1,8 +1,0 @@
-prefix=/home/tomoking/drone/EGO-Planner-v2/swarm-playground/main_ws/devel
-
-Name: training_data_manager
-Description: Description of training_data_manager
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

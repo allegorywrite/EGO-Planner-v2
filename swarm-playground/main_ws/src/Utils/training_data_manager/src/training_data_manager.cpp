@@ -8,15 +8,20 @@ namespace training_data_manager
         nh_ = nh;
         dim_per_drone_ = 14;
         goal_generated_ = false;
+        test_mode_ = false;
         episode_count_ = 0;
+        node_reset_episode_count_ = 0;
         waypoint_safe_radius_A2O_ = 0.1;
         waypoint_safe_radius_A2A_ = 0.5;
         /* parameter */
         nh.param("total_drones", total_drones_, 3);
         nh.param("snapshot_interval", snapshot_interval_, 0.05);
         nh.param("max_episode_num", max_episode_num_, 3);
+        nh.param("test_mode", test_mode_, false);
+        ROS_INFO("test_mode: %d", test_mode_);
         /* flag vector */
         reached_goal_flag_.resize(total_drones_, false);
+        reached_goal_time_.resize(total_drones_, ros::Time::now());
         goal_of_all_drones_.resize(total_drones_, Eigen::Vector3d::Zero());
         /* snapshot vector */
         state_snapshot_of_all_drones_.resize(total_drones_, Eigen::VectorXd::Zero(dim_per_drone_));
@@ -34,8 +39,10 @@ namespace training_data_manager
         }
         /* timer */
         snapshot_timer_ = nh.createTimer(ros::Duration(snapshot_interval_), &TrainingDataManager::addSnapshot, this);
+        freeze_check_timer_ = nh.createTimer(ros::Duration(1.0), &TrainingDataManager::checkFreeze, this);
         /* publisher */
         goal_pub_ = nh.advertise<quadrotor_msgs::GoalSet>("/data_generator/goal_with_id", 1);
+        // goal_pub_ = nh.advertise<quadrotor_msgs::GoalSet>("/goal", 1);
         /* subscriber */
         for(int i = 0; i < total_drones_; i++) 
         {
@@ -59,6 +66,22 @@ namespace training_data_manager
         state_seq_of_all_drones_.push_back(state_snapshot_of_all_drones_);
         map_seq_of_all_drones_.push_back(map_snapshot_of_all_drones_);
         // ROS_INFO("Add snapshot, total snapshots: %d", (int)state_seq_of_all_drones_.size());
+    }
+
+    void TrainingDataManager::checkFreeze(const ros::TimerEvent &event)
+    {
+        for(int i = 0; i < total_drones_; i++)
+        {
+            if((ros::Time::now() - reached_goal_time_[i]).toSec() > 20.0)
+            {
+                ROS_ERROR("Drone %d is frozen!", i);
+                kill_nodes(i);
+                reached_goal_time_[i] = ros::Time::now();
+                // node_reset_episode_count_++;
+                // reset();
+                // generateGoal();
+            }
+        }
     }
 
     void TrainingDataManager::localPointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr &msg, int drone_id)
@@ -85,14 +108,30 @@ namespace training_data_manager
         if (!goal_generated_)
             return;
         reached_goal_flag_[drone_id] = msg->data;
+        reached_goal_time_[drone_id] = ros::Time::now();
         ROS_INFO("Reached goal drones: %d", (int)std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true));
         // 事前に設定した割合のドローンがゴールに到達したらデータを保存する
-        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.8)
+        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.9)
         {
-            ROS_INFO("Save training data");
             goal_generated_ = false;
             snapshot_timer_.stop();
-            saveData();
+            if(!test_mode_){
+                ROS_INFO("Save training data");
+                saveData();
+            }
+
+            // if(node_reset_episode_count_ >= 3){
+            //     for (int i = 0; i < total_drones_; i++)
+            //         if (!reached_goal_flag_[i])
+            //              kill_nodes(i);
+            //     node_reset_episode_count_ = 0;
+            //     ros::Duration(5.0).sleep();
+            // }
+            for (int i = 0; i < total_drones_; i++)
+                kill_nodes(i);
+            node_reset_episode_count_ = 0;
+            // ros::Duration(5.0).sleep();
+            
             reset();
             if(episode_count_ >= max_episode_num_)
             {
@@ -158,6 +197,7 @@ namespace training_data_manager
         }
         goal_generated_ = true;
         episode_count_++;
+        node_reset_episode_count_++;
         snapshot_timer_.start();
     }
 
@@ -282,5 +322,45 @@ namespace training_data_manager
         map_file.close();
 
         ROS_INFO("Saved data to %s, %s and %s", replay_file_path.c_str(), vision_file_path.c_str(), map_file_path.c_str());
+    }
+
+    std::string TrainingDataManager::exec(const char* cmd) {
+        std::array<char, 128> buffer;
+        std::string result;
+        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+        if (!pipe) {
+            throw std::runtime_error("popen() failed!");
+        }
+        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+            result += buffer.data();
+        }
+        return result;
+    }
+
+    void TrainingDataManager::kill_nodes(int drone_id)
+    {
+        std::vector<std::string> node_array = {
+            "/drone_"+std::to_string(drone_id)+"_ego_planner_node", 
+            "/drone_"+std::to_string(drone_id)+"_odom_visualization", 
+            "/drone_"+std::to_string(drone_id)+"_pcl_render_node", 
+            "/drone_"+std::to_string(drone_id)+"_poscmd_2_odom", 
+            "/drone_"+std::to_string(drone_id)+"_traj_server"};
+        std::string node_list = exec("rosnode list");
+        std::istringstream node_stream(node_list);
+        std::string node;
+        
+        // Print currently running nodes
+        std::cout << "Currently running nodes: \n";
+        while (std::getline(node_stream, node)) {
+            if(std::find(node_array.begin(), node_array.end(), node) != node_array.end()){
+                std::string kill_cmd = "rosnode kill " + node;
+                std::cout << "kill node: " << node << "\n";
+                system(kill_cmd.c_str()); // Execute shell command to kill node
+            }
+        }
+        // ros::Duration(0.1).sleep();
+        // std::string rebuild_cmd = "roslaunch ego_planner autoflight.launch";
+        // system(rebuild_cmd.c_str()); // Execute shell command to kill node
+        // std::cout << "Do something else..." << "\n";
     }
 }
