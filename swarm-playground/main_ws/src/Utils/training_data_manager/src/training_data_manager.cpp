@@ -10,6 +10,7 @@ namespace training_data_manager
         goal_generated_ = false;
         test_mode_ = false;
         episode_count_ = 0;
+        prev_restart_time_ = ros::Time::now();
         node_reset_episode_count_ = 0;
         waypoint_safe_radius_A2O_ = 0.1;
         waypoint_safe_radius_A2A_ = 0.5;
@@ -25,6 +26,7 @@ namespace training_data_manager
         goal_of_all_drones_.resize(total_drones_, Eigen::Vector3d::Zero());
         /* snapshot vector */
         state_snapshot_of_all_drones_.resize(total_drones_, Eigen::VectorXd::Zero(dim_per_drone_));
+        state_snapshot_of_all_drones_last_.resize(total_drones_, Eigen::VectorXd::Zero(dim_per_drone_));
         map_snapshot_of_all_drones_.resize(total_drones_, pcl::PointCloud<pcl::PointXYZ>());
         /* sequence vector */
         state_seq_of_all_drones_.clear();
@@ -40,6 +42,7 @@ namespace training_data_manager
         /* timer */
         snapshot_timer_ = nh.createTimer(ros::Duration(snapshot_interval_), &TrainingDataManager::addSnapshot, this);
         freeze_check_timer_ = nh.createTimer(ros::Duration(1.0), &TrainingDataManager::checkFreeze, this);
+        emergency_restart_timer_ = nh.createTimer(ros::Duration(120.0), &TrainingDataManager::emergencyRestart, this);
         /* publisher */
         goal_pub_ = nh.advertise<quadrotor_msgs::GoalSet>("/data_generator/goal_with_id", 1);
         // goal_pub_ = nh.advertise<quadrotor_msgs::GoalSet>("/goal", 1);
@@ -72,16 +75,23 @@ namespace training_data_manager
     {
         for(int i = 0; i < total_drones_; i++)
         {
-            if((ros::Time::now() - reached_goal_time_[i]).toSec() > 20.0)
+            Eigen::Vector3f old_state = Eigen::Vector3f(state_snapshot_of_all_drones_last_[i][1], state_snapshot_of_all_drones_last_[i][2], state_snapshot_of_all_drones_last_[i][3]);
+            Eigen::Vector3f current_state = Eigen::Vector3f(state_snapshot_of_all_drones_[i][1], state_snapshot_of_all_drones_[i][2], state_snapshot_of_all_drones_[i][3]);
+            bool is_frozen = (current_state - old_state).norm() < 0.001;
+            bool is_reached_goal = reached_goal_flag_[i];
+            if((ros::Time::now() - reached_goal_time_[i]).toSec() > 20.0 && is_frozen && !is_reached_goal)
             {
                 ROS_ERROR("Drone %d is frozen!", i);
-                kill_nodes(i);
-                reached_goal_time_[i] = ros::Time::now();
+                killNodes(i);
+                for (int j = 0; j < total_drones_; j++){
+                    reached_goal_time_[j] = ros::Time::now();
+                }
                 // node_reset_episode_count_++;
                 // reset();
                 // generateGoal();
             }
         }
+        state_snapshot_of_all_drones_last_ = state_snapshot_of_all_drones_;
     }
 
     void TrainingDataManager::localPointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr &msg, int drone_id)
@@ -111,28 +121,40 @@ namespace training_data_manager
         reached_goal_time_[drone_id] = ros::Time::now();
         ROS_INFO("Reached goal drones: %d", (int)std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true));
         // 事前に設定した割合のドローンがゴールに到達したらデータを保存する
-        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.9)
+        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.6)
         {
             goal_generated_ = false;
             snapshot_timer_.stop();
+            emergency_restart_timer_.stop();
             if(!test_mode_){
                 ROS_INFO("Save training data");
                 saveData();
+            }
+            // prev_restart_time_
+            if ((ros::Time::now() - prev_restart_time_).toSec() > 1000.0)
+            {
+                for (int i = 0; i < total_drones_; i++){
+                    killNodes(i);
+                }
+                    
+                prev_restart_time_ = ros::Time::now();
+                reset(true);
+            }else{
+                reset(false);
             }
 
             // if(node_reset_episode_count_ >= 3){
             //     for (int i = 0; i < total_drones_; i++)
             //         if (!reached_goal_flag_[i])
-            //              kill_nodes(i);
+            //              killNodes(i);
             //     node_reset_episode_count_ = 0;
             //     ros::Duration(5.0).sleep();
             // }
-            for (int i = 0; i < total_drones_; i++)
-                kill_nodes(i);
-            node_reset_episode_count_ = 0;
+            // for (int i = 0; i < total_drones_; i++)
+            //     killNodes(i);
+            // node_reset_episode_count_ = 0;
             // ros::Duration(5.0).sleep();
-            
-            reset();
+
             if(episode_count_ >= max_episode_num_)
             {
                 ROS_INFO("Finished training data generation");
@@ -148,16 +170,26 @@ namespace training_data_manager
     {
         if (!goal_generated_)
             return false;
-        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.8)
+        if (std::count(reached_goal_flag_.begin(), reached_goal_flag_.end(), true) >= total_drones_ * 0.6)
         {
             ROS_INFO("Save training data");
             goal_generated_ = false;
             snapshot_timer_.stop();
+            emergency_restart_timer_.stop();
             saveData();
-            reset();
+            reset(false);
             return true;
         }
         return false;
+    }
+
+    void TrainingDataManager::emergencyRestart(const ros::TimerEvent &event)
+    {
+        ROS_INFO("Emergency restart");
+        goal_generated_ = false;
+        snapshot_timer_.stop();
+        reset(true);
+        generateGoal();
     }
 
     void TrainingDataManager::generateGoal()
@@ -199,6 +231,7 @@ namespace training_data_manager
         episode_count_++;
         node_reset_episode_count_++;
         snapshot_timer_.start();
+        emergency_restart_timer_.start();
     }
 
     bool TrainingDataManager::goalIsOccupied(Eigen::Vector3d &goal)
@@ -249,10 +282,15 @@ namespace training_data_manager
         return true;
     }
 
-    void TrainingDataManager::reset()
+    void TrainingDataManager::reset(bool reset_monitor)
     {
+        if(reset_monitor){
+            reached_goal_time_.resize(total_drones_, ros::Time::now());
+        }
+            
         goal_generated_ = false;
         snapshot_timer_.stop();
+        emergency_restart_timer_.stop();
 
         /* flag vector */
         reached_goal_flag_.clear();
@@ -336,8 +374,32 @@ namespace training_data_manager
         }
         return result;
     }
+    
+    bool TrainingDataManager::checkNodes(int drone_id)
+    {
+        std::vector<std::string> node_array = {
+            "/drone_"+std::to_string(drone_id)+"_ego_planner_node", 
+            "/drone_"+std::to_string(drone_id)+"_odom_visualization", 
+            "/drone_"+std::to_string(drone_id)+"_pcl_render_node", 
+            "/drone_"+std::to_string(drone_id)+"_poscmd_2_odom", 
+            "/drone_"+std::to_string(drone_id)+"_traj_server"};
+        std::string node_list = exec("rosnode list");
+        std::istringstream node_stream(node_list);
+        std::string node;
 
-    void TrainingDataManager::kill_nodes(int drone_id)
+        while (std::getline(node_stream, node)) {
+            auto itr = std::find(node_array.begin(), node_array.end(), node);
+            if (itr != node_array.end()) {
+                node_array.erase(itr);
+            }
+            if (node_array.empty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void TrainingDataManager::killNodes(int drone_id)
     {
         std::vector<std::string> node_array = {
             "/drone_"+std::to_string(drone_id)+"_ego_planner_node", 

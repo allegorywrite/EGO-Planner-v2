@@ -1,4 +1,9 @@
 <launch>
+    <!-- swarm topic transmitter bridge-->
+    <include file="$(find swarm_bridge)/launch/bridge_udp.launch">
+        <arg name="drone_id" value="999"/>
+        <arg name="broadcast_ip" value="127.0.0.255"/>
+    </include>
     <node pkg ="map_generator" name ="random_forest" type ="random_forest" output = "screen">
         <param name="map/x_size" value="20" />
         <param name="map/y_size" value="20" />

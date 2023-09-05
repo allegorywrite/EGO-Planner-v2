@@ -36,6 +36,7 @@ namespace training_data_manager
         ros::Publisher goal_pub_;
         ros::Timer snapshot_timer_;
         ros::Timer freeze_check_timer_;
+        ros::Timer emergency_restart_timer_;
         // tf::TransformListener tf_listener_;
         std::vector<ros::Subscriber> odom_subs_;
         std::vector<ros::Subscriber> reach_goal_subs_;
@@ -52,11 +53,13 @@ namespace training_data_manager
         double waypoint_safe_radius_A2O_;
         double waypoint_safe_radius_A2A_;
         ros::Time goal_generated_time_;
+        ros::Time prev_restart_time_;
         std::vector<bool> reached_goal_flag_;
         std::vector<ros::Time> reached_goal_time_;
         std::vector<Eigen::Vector3d> goal_of_all_drones_;
 
         std::vector<Eigen::VectorXd> state_snapshot_of_all_drones_;
+        std::vector<Eigen::VectorXd> state_snapshot_of_all_drones_last_;
         std::vector<std::vector<Eigen::VectorXd>> state_seq_of_all_drones_;
         // std::vector<bool> state_snapshot_flag_;
         std::vector<pcl::PointCloud<pcl::PointXYZ>> map_snapshot_of_all_drones_;
@@ -68,15 +71,17 @@ namespace training_data_manager
 
         void addSnapshot(const ros::TimerEvent &e);
         void checkFreeze(const ros::TimerEvent &e);
+        void emergencyRestart(const ros::TimerEvent &e);
         void odomCallback(const nav_msgs::Odometry::ConstPtr &msg, int drone_id);
         void reachGoalCallback(const std_msgs::Bool::ConstPtr &msg, int drone_id);
         void localPointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr &msg, int drone_id);
         bool goalIsOccupied(Eigen::Vector3d &goal);
         void saveData();
         void visualizeTrajectoryies();
-        void reset();
+        void reset(bool reset_monitor);
         std::string exec(const char* cmd);
-        void kill_nodes(int drone_id);
+        bool checkNodes(int drone_id);
+        void killNodes(int drone_id);
     };
 } // namespace training_data_manager
 

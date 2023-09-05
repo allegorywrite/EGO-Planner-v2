@@ -91,6 +91,7 @@ namespace ego_planner
 
   void EGOReplanFSM::execFSMCallback(const ros::TimerEvent &e)
   {
+    // ROS_INFO("execstate: %d", exec_state_);
     exec_timer_.stop(); // To avoid blockage
     std_msgs::Empty heartbeat_msg;
     heartbeat_pub_.publish(heartbeat_msg);
@@ -128,11 +129,13 @@ namespace ego_planner
 
     case SEQUENTIAL_START: // for swarm or single drone with drone_id = 0
     {
+      // ROS_INFO("if args: %d, %d", planner_manager_->pp_.drone_id, have_recv_pre_agent_);
       if (planner_manager_->pp_.drone_id <= 0 || (planner_manager_->pp_.drone_id >= 1 && have_recv_pre_agent_))
       {
         bool success = planFromGlobalTraj(10); // zx-todo
         if (success)
         {
+          // ROS_INFO("First trajectory generated successfully!");
           changeFSMExecState(EXEC_TRAJ, "FSM");
         }
         else
@@ -700,6 +703,7 @@ namespace ego_planner
 
   void EGOReplanFSM::RecvBroadcastMINCOTrajCallback(const traj_utils::MINCOTrajConstPtr &msg)
   {
+    ROS_INFO("Received broadcast MINCO traj from drone %d", msg->drone_id);
     const size_t recv_id = (size_t)msg->drone_id;
     if ((int)recv_id == planner_manager_->pp_.drone_id) // myself
       return;
