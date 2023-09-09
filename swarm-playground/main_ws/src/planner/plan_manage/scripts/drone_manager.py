@@ -85,7 +85,7 @@ def launch_node(drone_id):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--drone_id', type=int, default=0)
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
     rospy.init_node('drone_manager', anonymous=True)
     rate = rospy.Rate(1)  # 10hz
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:

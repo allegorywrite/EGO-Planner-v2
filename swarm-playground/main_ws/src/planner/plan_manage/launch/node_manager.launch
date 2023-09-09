@@ -1,0 +1,36 @@
+<launch>
+    <include file="$(find swarm_bridge)/launch/bridge_udp.launch">
+        <arg name="drone_id" value="999"/>
+        <arg name="broadcast_ip" value="127.0.0.255"/>
+    </include>
+    <node pkg ="map_generator" name ="random_forest" type ="random_forest" output = "screen">
+        <param name="map/x_size" value="20" />
+        <param name="map/y_size" value="20" />
+        <param name="map/z_size" value="3" />
+        <param name="map/resolution" value="0.1"/>
+        <param name="ObstacleShape/seed" value="1"/>
+        <param name="map/obs_num" value="122.29299363057325"/>
+        <param name="ObstacleShape/lower_rad" value="0.5"/>
+        <param name="ObstacleShape/upper_rad" value="0.7"/>
+        <param name="ObstacleShape/lower_hei" value="0.0"/>
+        <param name="ObstacleShape/upper_hei" value="3.0"/>
+        <param name="map/circle_num" value="122.29299363057325"/>
+        <param name="ObstacleShape/radius_l" value="0.7"/>
+        <param name="ObstacleShape/radius_h" value="0.5"/>
+        <param name="ObstacleShape/z_l" value="0.7"/>
+        <param name="ObstacleShape/z_h" value="0.8"/>
+        <param name="ObstacleShape/theta" value="0.5"/>
+        <param name="pub_rate" value="1.0"/>
+        <param name="min_distance" value="0.8"/>
+    </node>
+    <node name="drone_manager_0" pkg="ego_planner" type="drone_manager.py" args="--drone_id 0" output="screen" />
+    <node name="drone_manager_1" pkg="ego_planner" type="drone_manager.py" args="--drone_id 1" output="screen" />
+    <node name="drone_manager_2" pkg="ego_planner" type="drone_manager.py" args="--drone_id 2" output="screen" />
+    <node name="drone_manager_3" pkg="ego_planner" type="drone_manager.py" args="--drone_id 3" output="screen" />
+    <node name="drone_manager_4" pkg="ego_planner" type="drone_manager.py" args="--drone_id 4" output="screen" />
+    <node name="drone_manager_5" pkg="ego_planner" type="drone_manager.py" args="--drone_id 5" output="screen" />
+    <node name="drone_manager_6" pkg="ego_planner" type="drone_manager.py" args="--drone_id 6" output="screen" />
+    <node name="drone_manager_7" pkg="ego_planner" type="drone_manager.py" args="--drone_id 7" output="screen" />
+    <node name="drone_manager_8" pkg="ego_planner" type="drone_manager.py" args="--drone_id 8" output="screen" />
+    <node name="drone_manager_9" pkg="ego_planner" type="drone_manager.py" args="--drone_id 9" output="screen" />
+</launch>

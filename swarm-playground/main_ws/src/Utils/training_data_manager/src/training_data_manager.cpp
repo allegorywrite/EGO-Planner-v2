@@ -19,7 +19,6 @@ namespace training_data_manager
         nh.param("snapshot_interval", snapshot_interval_, 0.05);
         nh.param("max_episode_num", max_episode_num_, 3);
         nh.param("test_mode", test_mode_, false);
-        ROS_INFO("test_mode: %d", test_mode_);
         /* flag vector */
         reached_goal_flag_.resize(total_drones_, false);
         reached_goal_time_.resize(total_drones_, ros::Time::now());
@@ -312,11 +311,11 @@ namespace training_data_manager
         int random_number = rand() % (99999999 + 1 - 10000000) + 10000000;
         std::string home = std::getenv("HOME");
         std::string replay_file_path 
-            = home + "/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
+            = home + "/drone/polka_dot/data/training/replay/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".csv";
         std::string vision_file_path 
-            = home + "/polka_dot/data/training/vision/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
+            = home + "/drone/polka_dot/data/training/vision/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".pcd";
         std::string map_file_path
-            = home + "/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".yaml";
+            = home + "/drone/polka_dot/data/training/map/agents" + std::to_string(total_drones_) + "_" + std::to_string(random_number) + ".yaml";
 
         // リプレイデータをcsvで保存
         std::ofstream state_file(replay_file_path);
